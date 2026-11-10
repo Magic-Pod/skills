@@ -1,6 +1,6 @@
 ---
 name: magicpod-smoke
-description: MagicPod MCP Server を使って、Web アプリ・モバイルアプリのスモークテストを対話的に設計し、MagicPod にテストケースとして登録する。「スモークテストを作って」「MagicPod にテストを追加して」「重要な画面のテストを MagicPod で作りたい」「smoke test」など、MagicPod でのテスト自動化を頼まれたときに使う。
+description: Uses the MagicPod MCP Server to design smoke tests for web and mobile apps through a short conversation, and registers them as test cases in MagicPod. Use when asked to automate tests with MagicPod, for example "create smoke tests", "add a test to MagicPod", or "test the key screens with MagicPod". / MagicPod MCP Server を使って、Web アプリ・モバイルアプリのスモークテストを対話的に設計し、MagicPod にテストケースとして登録する。「スモークテストを作って」「MagicPod にテストを追加して」「重要な画面のテストを MagicPod で作りたい」など、MagicPod でのテスト自動化を頼まれたときに使う。
 license: MIT
 ---
 

@@ -19,6 +19,12 @@ This repository is public. Not only the files, but also commit messages, pull re
 
 These rules are checked automatically (`scripts/check-naming.sh`).
 
+## Language
+
+- Write `description` in SKILL.md in both English and Japanese: English first, then ` / `, then Japanese. The description decides when the skill is used, so include example requests in both languages.
+- Write the body of SKILL.md in Japanese.
+- Write README in both English and Japanese, and CONTRIBUTING in English.
+
 ## How to make a change
 
 1. Create a branch and make your change
