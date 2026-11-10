@@ -49,7 +49,11 @@ fi
 run "発見可能性の確認 (skills add --list)" \
   npx -y "skills@${SKILLS_VERSION}" add . --list --full-depth
 
-# 4. 社内情報が含まれていないか
+# 4. スキルの名前とフォルダの決まり（CONTRIBUTING.md の Naming rules）
+run "スキルの名前とフォルダの確認" \
+  bash scripts/check-naming.sh
+
+# 5. 社内情報が含まれていないか
 run "社内情報のチェック" \
   bash scripts/check-internal-info.sh
 

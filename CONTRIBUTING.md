@@ -11,6 +11,14 @@ This repository is public. Not only the files, but also commit messages, pull re
 - API keys, tokens, or passwords
 - Personal default values, such as your own MagicPod organization or project name
 
+## Naming rules
+
+- Put each skill in `skills/<skill-name>/SKILL.md`
+- Start skill names with `magicpod-`, and use only lowercase letters, numbers, and hyphens (for example, `magicpod-smoke`)
+- Make `name` in SKILL.md the same as the folder name
+
+These rules are checked automatically (`scripts/check-naming.sh`).
+
 ## How to make a change
 
 1. Create a branch and make your change
@@ -25,9 +33,10 @@ These checks run when a pull request is opened and when `main` is updated:
 1. Agent Skills spec (`name` / `description` in SKILL.md, etc.)
 2. Claude Code plugin definitions (`.claude-plugin/plugin.json` / `marketplace.json`)
 3. Discoverability (skills can still be found and installed after folders are moved)
-4. Internal information (`scripts/check-internal-info.sh`; also checks the pull request title and description)
+4. Naming rules (`scripts/check-naming.sh`; see "Naming rules" above)
+5. Internal information (`scripts/check-internal-info.sh`; also checks the pull request title and description)
 
-Check 4 only looks for fixed patterns. It cannot find company names or customer stories, so please also review your change yourself before opening a pull request.
+Check 5 only looks for fixed patterns. It cannot find company names or customer stories, so please also review your change yourself before opening a pull request.
 
 ## Release
 
