@@ -1,12 +1,21 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
-  "name": "magicpod",
-  "displayName": "MagicPod",
-  "description": "MagicPod 公式 Agent Skills。MagicPod MCP Server と組み合わせて、テストケースの作成などを AI エージェントから行えるようにします。",
-  "version": "0.1.0",
-  "author": { "name": "MagicPod", "url": "https://magicpod.com" },
+  "name": "magicpod-skills",
+  "displayName": "MagicPod Skills",
+  "description": "MagicPod 公式 Agent Skills。スモークテストの設計・登録など、MagicPod でのテスト作成の進め方を AI エージェントに伝えるスキル集です。MagicPod MCP Server（コネクタ）と組み合わせて使います。",
+  "version": "0.2.0",
+  "author": {
+    "name": "MagicPod",
+    "url": "https://magicpod.com"
+  },
   "homepage": "https://support.magic-pod.com/hc/articles/46186888063769",
   "repository": "https://github.com/Magic-Pod/skills",
   "license": "MIT",
-  "keywords": ["magicpod", "e2e-testing", "test-automation", "smoke-test", "mcp"]
+  "keywords": [
+    "magicpod",
+    "e2e-testing",
+    "test-automation",
+    "smoke-test",
+    "mcp"
+  ]
 }

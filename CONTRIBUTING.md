@@ -1,35 +1,35 @@
-# メンテナンスのルール
+# Contributing
 
-このリポジトリは公開されています。ファイルだけでなく、コミットメッセージ・PR のタイトルと本文・ブランチ名も誰でも見られます。
+This repository is public. Not only the files, but also commit messages, pull request titles and descriptions, and branch names can be seen by anyone.
 
-## 書かないもの
+## Do not include
 
-- お客様の社名・担当者名、お客様から聞いた内容
-- テストで使ったサイトやアプリの具体的な名前・URL・画面（スキルの例は、どのアプリにも当てはまる一般的な書き方にする）
-- 社内のリンク（社内 GitHub リポジトリ、Slack、Notion、HubSpot、Google Drive、Productboard など）
-- 社内の Slack チャンネル名、社内の呼び方・プロジェクト名
-- API キー、トークン、パスワード
-- 個人の MagicPod 組織名・プロジェクト名などの既定値
+- Customer company names, contact names, or anything customers told us
+- Specific names, URLs, or screens of the sites or apps we tested (write skill examples in a general way that fits any app)
+- Internal links (internal GitHub repositories, Slack, Notion, HubSpot, Google Drive, Productboard, etc.)
+- Internal Slack channel names, internal terms, or internal project names
+- API keys, tokens, or passwords
+- Personal default values, such as your own MagicPod organization or project name
 
-## 変更の流れ
+## How to make a change
 
-1. ブランチを作って変更する
-2. 手元で `bash scripts/validate.sh` を実行し、すべて通ることを確認する
-3. PR を作る（タイトル・本文にも上の「書かないもの」を入れない）
-4. GitHub Actions の `validate` が通ったらマージする
+1. Create a branch and make your change
+2. Run `bash scripts/validate.sh` locally and make sure all checks pass
+3. Open a pull request (do not include anything from "Do not include" in the title or description)
+4. Merge after the `validate` check in GitHub Actions passes
 
-## 自動チェック（`validate`）
+## Automated checks (`validate`)
 
-PR を作ったときと main が更新されたときに、次を確認します。
+These checks run when a pull request is opened and when `main` is updated:
 
-1. Agent Skills の規格（SKILL.md の `name` / `description` など）
-2. Claude Code のプラグイン定義（`.claude-plugin/plugin.json` / `marketplace.json`）
-3. スキルが見つかるか（フォルダを動かしてインストールできなくなっていないか）
-4. 社内情報が含まれていないか（`scripts/check-internal-info.sh`。PR のタイトル・本文も確認）
+1. Agent Skills spec (`name` / `description` in SKILL.md, etc.)
+2. Claude Code plugin definitions (`.claude-plugin/plugin.json` / `marketplace.json`)
+3. Discoverability (skills can still be found and installed after folders are moved)
+4. Internal information (`scripts/check-internal-info.sh`; also checks the pull request title and description)
 
-4 は決まった形の文字列だけを見ています。社名やお客様の話などは機械では見つけられないため、PR を出す前に自分の目でも確認してください。
+Check 4 only looks for fixed patterns. It cannot find company names or customer stories, so please also review your change yourself before opening a pull request.
 
-## リリース
+## Release
 
-1. `.claude-plugin/plugin.json` の `version` を上げる
-2. main にマージしたあと、GitHub Release を作る
+1. Bump `version` in `.claude-plugin/plugin.json`
+2. After merging into `main`, create a GitHub Release
