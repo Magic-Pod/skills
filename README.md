@@ -25,6 +25,14 @@ https://support.magic-pod.com/hc/articles/46186888063769
 /plugin install magicpod@magicpod
 ```
 
+### Claude Desktop / Web（チャット・Cowork）
+
+1. **カスタマイズ > プラグイン** から追加を選び、マーケットプレイスとして `Magic-Pod/skills` を追加します
+2. 表示された `magicpod` プラグインをインストールします
+3. MagicPod MCP Server をまだ接続していない場合は、**カスタマイズ > コネクタ** で「MagicPod」を検索して接続します（Team / Enterprise プランでは、先に組織のオーナーがコネクタを追加する必要があります）
+
+スキルの利用には Claude の有料プランが必要です。
+
 ### その他のエージェント（Cursor、Codex など）
 
 ```bash
