@@ -17,7 +17,7 @@ MagicPod MCP Server のツールを使って、アプリの核心機能を確か
 ```
 MagicPod MCP Server が設定されていないようです。
 次のヘルプページの手順でセットアップしてから、もう一度お試しください。
-https://support.magic-pod.com/hc/articles/46186888063769
+https://support.magic-pod.com/hc/articles/62605396709273
 ```
 
 ツールが使える場合は、テストケースの作成に入る前に MagicPod MCP Server の `start_session` を呼び、返ってくるガイダンス（ツールの使い方、コマンドの書き方）に従う。
