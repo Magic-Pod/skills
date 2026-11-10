@@ -18,9 +18,12 @@ Use them with the [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/a
 ### Requirements
 
 - A MagicPod account
-- MagicPod MCP Server set up (see the help page below)
+- MagicPod MCP Server set up
 
-https://support.magic-pod.com/hc/en-us/articles/46186888063769
+References:
+
+- [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/articles/46186888063769)
+- [Setting Up MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/articles/62605396709273)
 
 ### Install
 
@@ -59,9 +62,7 @@ In Claude Code, update the marketplace from the `/plugin` screen to get the late
 
 ### Contact
 
-This repository does not accept issues. For questions or requests, please contact MagicPod support.
-
-https://support.magic-pod.com/
+This repository does not accept issues. For questions or requests, please use the [MagicPod contact form](https://magicpod.com/en/contact/).
 
 ### License
 
@@ -83,9 +84,12 @@ MagicPod 公式の [Agent Skills](https://agentskills.io/) です。
 ### 前提
 
 - MagicPod のアカウント
-- MagicPod MCP Server のセットアップ（手順は次のヘルプページを参照）
+- MagicPod MCP Server のセットアップ
 
-https://support.magic-pod.com/hc/ja/articles/46186888063769
+参考：
+
+- [MagicPod MCPサーバー](https://support.magic-pod.com/hc/ja/articles/46186888063769)
+- [MagicPod MCPサーバーのセットアップ手順](https://support.magic-pod.com/hc/ja/articles/62605396709273)
 
 ### インストール
 
@@ -124,9 +128,7 @@ Claude Code では、`/plugin` の画面からマーケットプレイスを更�
 
 ### お問い合わせ
 
-このリポジトリでは Issue を受け付けていません。ご質問・ご要望は MagicPod サポートまでお問い合わせください。
-
-https://support.magic-pod.com/
+このリポジトリでは Issue を受け付けていません。ご質問・ご要望は [MagicPod お問い合わせフォーム](https://magicpod.com/contact/) からお問い合わせください。
 
 ### ライセンス
 
