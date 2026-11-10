@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "magicpod",
+  "owner": { "name": "MagicPod", "url": "https://magicpod.com" },
+  "description": "MagicPod 公式 Agent Skills",
+  "plugins": [
+    {
+      "name": "magicpod",
+      "source": "./"
+    }
+  ]
+}
