@@ -3,7 +3,7 @@
   "name": "magicpod-skills",
   "displayName": "MagicPod Skills",
   "description": "MagicPod 公式 Agent Skills。スモークテストの設計・登録など、MagicPod でのテスト作成の進め方を AI エージェントに伝えるスキル集です。MagicPod MCP Server（コネクタ）と組み合わせて使います。",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "MagicPod",
     "url": "https://magicpod.com"
