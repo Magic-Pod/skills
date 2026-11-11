@@ -49,7 +49,19 @@ fi
 run "発見可能性の確認 (skills add --list)" \
   npx -y "skills@${SKILLS_VERSION}" add . --list --full-depth
 
-# 4. 社内情報が含まれていないか
+# 4. スキルの名前とフォルダの決まり（CONTRIBUTING.md の Naming rules）
+run "スキルの名前とフォルダの確認" \
+  bash scripts/check-naming.sh
+
+# 5. README にすべてのスキルが載っているか、description が「英語 / 日本語」になっているか
+run "README とスキルの description の確認" \
+  python3 scripts/check-docs.py
+
+# 6. スキルやプラグイン定義を変えたときに version が上がっているか
+run "version の確認" \
+  bash scripts/check-version.sh
+
+# 7. 社内情報が含まれていないか
 run "社内情報のチェック" \
   bash scripts/check-internal-info.sh
 
