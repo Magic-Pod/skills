@@ -14,6 +14,7 @@ Use them with the [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/a
 | Skill | What it does |
 |---|---|
 | `magicpod-smoke` | Designs smoke tests for the core features of your app through a short conversation, creates them as test cases in MagicPod, and checks that they run |
+| `magicpod-test-review` | Reviews your test cases against 10 criteria (purpose, stability, readability, and maintainability) and writes a report. If you want, it fixes the findings in a new branch |
 
 ### Requirements
 
@@ -80,6 +81,7 @@ MagicPod 公式の [Agent Skills](https://agentskills.io/) です。
 | スキル | できること |
 |---|---|
 | `magicpod-smoke` | アプリの核心機能を確かめるスモークテストを対話的に設計し、MagicPod にテストケースとして作成して動作確認します |
+| `magicpod-test-review` | テストケースを10の観点（目的・安定性・可読性・メンテナンス性）でレビューし、レポートにまとめます。希望すれば、指摘の修正を新しいブランチ上で行います |
 
 ### 前提
 
