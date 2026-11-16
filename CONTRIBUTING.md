@@ -19,6 +19,8 @@ This repository is public. Not only the files, but also commit messages, pull re
 
 These rules are checked automatically (`scripts/check-naming.sh`).
 
+Do not change the plugin name (`name` in `.claude-plugin/plugin.json`) or the marketplace name (`name` in `.claude-plugin/marketplace.json`). If either name changes, users who already installed the plugin stop getting updates, and they need to uninstall it and install it again.
+
 ## Language
 
 - Write `description` in SKILL.md in both English and Japanese: English first, then ` / `, then Japanese. The description decides when the skill is used, so include example requests in both languages.
