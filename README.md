@@ -59,7 +59,36 @@ Create smoke tests for this app in MagicPod
 
 ### Update
 
-In Claude Code, update the marketplace from the `/plugin` screen to get the latest version.
+New skills and updates are not always added to your AI agent automatically. If a skill in the list above is not available, update with the steps below, then start a new conversation (session).
+
+#### Claude Code
+
+```bash
+claude plugin marketplace update magicpod
+claude plugin update magicpod-skills@magicpod
+```
+
+Then restart Claude Code.
+
+To get updates automatically, turn on auto-update for the `magicpod` marketplace in the **Marketplaces** tab of `/plugin`.
+
+#### Claude Desktop / Web (Chat, Cowork)
+
+In **Customize > Plugins**, open the "…" menu of the "MagicPod Skills" plugin and choose **Check for updates**.
+
+#### Other agents (Cursor, Codex, etc.)
+
+```bash
+npx skills update
+```
+
+To only check whether updates are available, run `npx skills check`.
+
+If you added the skills by asking your AI agent, ask it again, for example: "Install the latest skills from Magic-Pod/skills". If the new skill does not appear, restart the app.
+
+#### Tip: update on a schedule
+
+If your AI agent can run scheduled tasks, add a task like "Every Monday, check Magic-Pod/skills and add or update the skills". You will always have the latest skills.
 
 ### Contact
 
@@ -126,7 +155,36 @@ npx skills add Magic-Pod/skills
 
 ### 更新
 
-Claude Code では、`/plugin` の画面からマーケットプレイスを更新すると最新版が入ります。
+スキルの追加や更新は、AI エージェントに自動で反映されないことがあります。上の一覧にあるスキルが使えない場合は、次の手順で更新してから、新しい会話（セッション）を始めてください。
+
+#### Claude Code
+
+```bash
+claude plugin marketplace update magicpod
+claude plugin update magicpod-skills@magicpod
+```
+
+続けて Claude Code を再起動します。
+
+自動で更新したい場合は、`/plugin` の **Marketplaces** タブで `magicpod` マーケットプレイスの自動更新をオンにしてください。
+
+#### Claude Desktop / Web（チャット・Cowork）
+
+**カスタマイズ > プラグイン** で「MagicPod Skills」プラグインの「…」メニューを開き、**アップデートを確認** を選びます。
+
+#### その他のエージェント（Cursor、Codex など）
+
+```bash
+npx skills update
+```
+
+更新があるかだけ確認したい場合は `npx skills check` を実行します。
+
+AI エージェントに頼んでスキルを入れた場合は、「Magic-Pod/skills から最新のスキルを入れて」のように、もう一度頼んでください。新しいスキルが表示されない場合は、アプリを再起動します。
+
+#### ヒント：定期的に更新する
+
+AI エージェントに定期実行の機能がある場合は、「毎週月曜に Magic-Pod/skills を確認して、スキルを追加・更新する」といったタスクを登録しておくと、常に最新のスキルを使えます。
 
 ### お問い合わせ
 
