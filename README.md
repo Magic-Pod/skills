@@ -19,6 +19,7 @@ Use them with the [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/a
 | `magicpod-flaky-test-fix` | Finds tests that sometimes pass and sometimes fail in your run history, finds the cause, and suggests fixes. If you agree, it fixes them in a branch and checks they are stable |
 | `magicpod-health-score` | Checks your project's health score and suggests what to do, in order of priority, to reach green or stay green. For new projects, it also plans the first 3 months |
 | `magicpod-test-organization` | Organizes your test cases: shared steps, naming, folders, labels, and descriptions. It changes things only after you approve, and writes the rules to MAGICPOD_CONVENTIONS.md |
+| `magicpod-playwright-migration` | Converts your Playwright tests into MagicPod browser test cases. It first shows a conversion plan and asks about anything that cannot be converted as is, then creates the test cases and checks that they run |
 
 ### Requirements
 
@@ -119,6 +120,7 @@ MagicPod 公式の [Agent Skills](https://agentskills.io/) です。
 | `magicpod-flaky-test-fix` | 実行履歴から、成功したり失敗したりする不安定なテストを見つけ、原因と直し方を示します。了承すればブランチ上で直し、安定したかを確かめます |
 | `magicpod-health-score` | プロジェクトのヘルススコアを確認し、グリーンに上げる・保つための改善策を優先順位つきで提案します。導入したばかりなら、最初の3か月の進め方も設計します |
 | `magicpod-test-organization` | 共有ステップ・命名・フォルダ・ラベル・説明欄を整え、テストケースを管理しやすくします。変更は承認後に行い、決めたルールは MAGICPOD_CONVENTIONS.md に書き出します |
+| `magicpod-playwright-migration` | Playwright のテストを MagicPod のブラウザテストケースに変換します。先に変換計画を示し、そのままでは変換できない点を確認してから作成し、動作を確かめます |
 
 ### 前提
 
