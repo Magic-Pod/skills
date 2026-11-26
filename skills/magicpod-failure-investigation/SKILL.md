@@ -1,20 +1,20 @@
 ---
 name: magicpod-failure-investigation
-description: Investigates why tests failed in a MagicPod batch run and classifies each failure as an app bug, a spec change (test needs updating), Flaky, or an environment issue, with evidence from results, logs, screenshots, and run history. If GitHub is available, it also checks commits and pull requests merged just before the failure. It is read only and does not fix or rerun test cases. Use when asked, for example, "why did this batch run fail?", "analyze the failures in this batch-run URL", "is this an app bug or a test problem?", or "which commit broke the test?", or when a MagicPod batch run URL is shared. / MagicPodのバッチ実行(一括実行)で失敗したテストの原因を調べ、「アプリの不具合」「仕様変更(テストの更新が必要)」「Flaky」「環境」などに分類して報告する。実行結果・ログ・スクリーンショット・実行履歴に加え、GitHubが読めれば失敗の直前に入ったコミットやPRも調べて根拠にする。読み取り専用で、テストケースの修正や再実行はしない。「バッチ実行が失敗した原因を調べて」「このbatch-runのURLの失敗を分析して」「昨夜の定期実行で落ちたテストは何が原因?」「テストが落ちたのはアプリのバグ?テストの問題?」「どのコミットのせいで失敗した?」のような依頼や、MagicPodのバッチ実行URL(app.magicpod.com/.../batch-run/N/)が貼られて失敗の理由を知りたそうなときは、必ずこのスキルを使うこと。
+description: Investigates why tests failed in a MagicPod batch run and classifies each failure as an app bug, a spec change (test needs updating), Flaky, or an environment issue, with evidence from results, logs, screenshots, and run history. If GitHub is available, it also checks commits and pull requests merged just before the failure. It is read only and does not fix or rerun test cases. Use when asked, for example, "why did this batch run fail?", "analyze the failures in this batch-run URL", "is this an app bug or a test problem?", or "which commit broke the test?", or when a MagicPod batch run URL is shared. / MagicPodの一括実行で失敗したテストの原因を調べ、「アプリの不具合」「仕様変更（テストの更新が必要）」「Flaky」「環境」などに分類して報告する。実行結果・ログ・スクリーンショット・実行履歴に加え、GitHubが読めれば失敗の直前に入ったコミットやPRも調べて根拠にする。読み取り専用で、テストケースの修正や再実行はしない。「一括実行が失敗した原因を調べて」「このbatch-runのURLの失敗を分析して」「昨夜の定期実行で落ちたテストは何が原因？」「テストが落ちたのはアプリのバグ？テストの問題？」「どのコミットのせいで失敗した？」のような依頼や、MagicPodの一括実行URL（app.magicpod.com/.../batch-run/N/）が貼られて失敗の理由を知りたそうなときは、必ずこのスキルを使うこと。
 license: MIT
 ---
 
 # magicpod-failure-investigation
 
-MagicPodのバッチ実行で失敗したテストについて、「なぜ失敗したのか」「誰が何をすべきか」を、根拠つきで報告するスキル。
+MagicPodの一括実行で失敗したテストについて、「なぜ失敗したのか」「誰が何をすべきか」を、根拠つきで報告するスキル。
 
 テストの失敗には、アプリの不具合、アプリの意図的な変更にテストが追いついていないもの、タイミングやデータによる不安定さ、実行環境の違いなど、性質の違う原因が混ざっている。報告を受けた人が「開発者にバグとして渡す」「テストを直す」「様子を見る」のどれをすべきかを判断できるようにするのが、このスキルの目的。
 
 ## 前提と守ること
 
-- **読み取りだけを行う。** テストケースやUIの編集、バッチ実行の開始・再実行、自動修復の承認・却下、GitHubへの書き込みはしない。調べるだけで、直すのは人。必要な対応は「推奨する対応」として書く。
+- **読み取りだけを行う。** テストケースやUIの編集、一括実行の開始・再実行、自動修復の承認・却下、GitHubへの書き込みはしない。調べるだけで、直すのは人。必要な対応は「推奨する対応」として書く。
 - **MagicPod MCP** を使う。`start_session` は不要で、以下のツールを直接呼べる。
-  - `list_batch_runs` / `list_batch_run_test_runs`: バッチ実行と、その中のテスト結果
+  - `list_batch_runs` / `list_batch_run_test_runs`: 一括実行と、その中のテスト結果
   - `get_test_run`: 1件の実行の結果・ログ・スクリーンショット・実行時の設定
   - `list_test_runs`: テストケースごとの実行履歴
   - `get_test_case_detail` または `read_test_case`: テストケースの手順と説明欄
@@ -26,17 +26,17 @@ MagicPodのバッチ実行で失敗したテストについて、「なぜ失敗
 
 ### 1. 調べる範囲を決め、失敗の一覧を作る
 
-バッチ実行のURL(`app.magicpod.com/{組織}/{プロジェクト}/batch-run/{番号}/`)から組織・プロジェクト・番号を読み取る。URLが無ければ `list_batch_runs` で直近の失敗したバッチ実行を探す。
+一括実行のURL(`app.magicpod.com/{組織}/{プロジェクト}/batch-run/{番号}/`)から組織・プロジェクト・番号を読み取る。URLが無ければ `list_batch_runs` で直近の失敗した一括実行を探す。
 
-**特定のテスト結果が指定されたら、それだけを調べる。** 次のような場合は、指定されたテスト結果が調査の対象で、同じバッチ実行のほかの失敗は対象外。
+**特定のテスト結果が指定されたら、それだけを調べる。** 次のような場合は、指定されたテスト結果が調査の対象で、同じ一括実行のほかの失敗は対象外。
 
-- URLがバッチ実行の中の1件の結果を指している(例: `.../batch-run/12/3/` のように、バッチ実行番号の後ろに番号が続く)
+- URLが一括実行の中の1件の結果を指している(例: `.../batch-run/12/3/` のように、一括実行番号の後ろに番号が続く)
 - テストケースの実行結果のURL(`.../{テストケース番号}/test-run/{実行番号}/`)が貼られている
-- 依頼文でテストケース名・番号が指定されている(「このバッチ実行の◯◯のテストだけ見て」など)
+- 依頼文でテストケース名・番号が指定されている(「この一括実行の◯◯のテストだけ見て」など)
 
-ほかの失敗したテストケースは、分析も報告もしない。例外は、指定されたテストの失敗を説明するのに必要な場合だけ(自動修復の却下に巻き込まれた疑いがあり、修復が起きた別のテストケースを確かめる、など)。そのときも、見るのは関係する1件だけにし、報告では指定されたテストの根拠として触れる。ほかにも失敗がある場合は、「補足」に「このバッチ実行には、ほかに◯件の失敗があります(今回は調査対象外)」と1行だけ書いてよい。
+ほかの失敗したテストケースは、分析も報告もしない。例外は、指定されたテストの失敗を説明するのに必要な場合だけ(自動修復の却下に巻き込まれた疑いがあり、修復が起きた別のテストケースを確かめる、など)。そのときも、見るのは関係する1件だけにし、報告では指定されたテストの根拠として触れる。ほかにも失敗がある場合は、「補足」に「この一括実行には、ほかに◯件の失敗があります(今回は調査対象外)」と1行だけ書いてよい。
 
-範囲の指定が無く、バッチ実行全体のURLだけが示されたときは、バッチ実行の失敗をすべて調べる。
+範囲の指定が無く、一括実行全体のURLだけが示されたときは、一括実行の失敗をすべて調べる。
 
 `list_batch_run_test_runs` で、失敗したテストケースと実行番号を一覧にする。テスト設定のパターン(ブラウザ・端末)が複数あれば、パターンごとに分ける。成功したテストケースも控えておく。「何が失敗したか」と同じくらい「何が成功したか」が、原因の絞り込みに効くため。
 
@@ -60,7 +60,7 @@ MagicPodのバッチ実行で失敗したテストについて、「なぜ失敗
 読むときの勘所は `references/failure-signals.md` にまとめてある。最初の調査では必ず目を通すこと。特に次の3つは見落としやすい。
 
 - **自動修復**: ログに「Element is not found. Requesting new healing result..」があれば、要素が見つからずAIの自動修復が動いた。UIのID・文言が変わったことを示す強い手がかり。修復が効くとそのステップは成功し、失敗は後のステップで別の形で現れる。
-- **失敗したステップが無い失敗**: `failed_lines` が空で、ログでも全ステップが通っているのに失敗している場合、同じバッチ実行の別のテストケースで起きた自動修復が却下され、巻き込まれた可能性が高い。
+- **失敗したステップが無い失敗**: `failed_lines` が空で、ログでも全ステップが通っているのに失敗している場合、同じ一括実行の別のテストケースで起きた自動修復が却下され、巻き込まれた可能性が高い。
 - **紛らわしいエラーメッセージ**: エラーに出るロケーターが、そのステップで意図した要素と違うことがある(1つのUI要素に複数のロケーターがあり、別のものが使われた)。メッセージの文面だけで判断せず、ステップ名・画面・ログと突き合わせる。
 
 ### 3. 失敗をまとめる
@@ -121,7 +121,7 @@ MagicPodのバッチ実行で失敗したテストについて、「なぜ失敗
 | MagicPod・インフラ側 | 実行基盤やMagicPodの問題が疑われる | 再実行で再現するか確認、サポートへ問い合わせ |
 | 判断できない | 根拠が足りない | 何を確認すれば判断できるかを書く |
 
-1つのバッチ実行に、性質の違う原因が混ざっていることはよくある(コード変更による失敗と、たまたま起きたFlakyなど)。全部を1つの原因で説明しようとしないこと。
+1つの一括実行に、性質の違う原因が混ざっていることはよくある(コード変更による失敗と、たまたま起きたFlakyなど)。全部を1つの原因で説明しようとしないこと。
 
 ## 報告の形式
 
@@ -139,7 +139,7 @@ MagicPodのバッチ実行で失敗したテストについて、「なぜ失敗
 次の形を使う。
 
 ```markdown
-# バッチ実行 #<番号> の失敗調査
+# 一括実行 #<番号> の失敗調査
 
 ## 結論
 <何が原因で、テストとアプリのどちらに問題があり、何をすればよいかを3文以内で>

@@ -1,6 +1,6 @@
 ---
 name: magicpod-flaky-test-fix
-description: Finds Flaky tests (tests that sometimes pass and sometimes fail) in MagicPod run history (scheduled and batch runs), identifies the cause (waiting for display, dates or test data, test order, etc.), and suggests fixes. Only if the user agrees, it fixes the test cases in a MagicPod branch and reruns them to check they are stable. Use when asked, for example, "find Flaky tests", "fix tests that sometimes fail", "which scheduled tests are unstable?", or "this test fails only on weekends". To find the cause of failures in a single batch run, use magicpod-failure-investigation instead. / MagicPodの実行履歴(定期実行・バッチ実行)から、成功したり失敗したりする不安定なテスト(Flakyテスト)を見つけ、原因(表示の待ち時間、日付・テストデータ、テストの順序など)を特定して、テストケースの修正案を出す。ユーザーが了承した場合だけ、MagicPodのブランチ上でテストケースを直し、再実行して安定したかを確かめる。「Flakyなテストを探して」「たまに落ちるテストを直して」「定期実行で不安定なテストは?」「このテストが時々失敗する原因と直し方を教えて」「週末だけ落ちる」のような依頼や、実行履歴を見てテストの安定性を改善したそうなときは、必ずこのスキルを使うこと。1回のバッチ実行の失敗原因だけを知りたい場合は magicpod-failure-investigation スキルの方が向いている。
+description: Finds Flaky tests (tests that sometimes pass and sometimes fail) in MagicPod run history (scheduled and batch runs), identifies the cause (waiting for display, dates or test data, test order, etc.), and suggests fixes. Only if the user agrees, it fixes the test cases in a MagicPod branch and reruns them to check they are stable. Use when asked, for example, "find Flaky tests", "fix tests that sometimes fail", "which scheduled tests are unstable?", or "this test fails only on weekends". To find the cause of failures in a single batch run, use magicpod-failure-investigation instead. / MagicPodの実行履歴（定期実行・一括実行）から、成功したり失敗したりする不安定なテスト（Flakyテスト）を見つけ、原因（表示の待ち時間、日付・テストデータ、テストの順序など）を特定して、テストケースの修正案を出す。ユーザーが了承した場合だけ、MagicPodのブランチ上でテストケースを直し、再実行して安定したかを確かめる。「Flakyなテストを探して」「たまに落ちるテストを直して」「定期実行で不安定なテストは？」「このテストが時々失敗する原因と直し方を教えて」「週末だけ落ちる」のような依頼や、実行履歴を見てテストの安定性を改善したそうなときは、必ずこのスキルを使うこと。1回の一括実行の失敗原因だけを知りたい場合は magicpod-failure-investigation スキルの方が向いている。
 license: MIT
 ---
 
@@ -12,7 +12,7 @@ MagicPodの実行履歴から不安定なテストを見つけ、原因と直し
 
 ## 前提と守ること
 
-- **調べるのと提案するのは自由に行ってよい。書き込みは、ユーザーが修正案を見て了承してから。** 了承は修正ごとに取る。了承の前に、ブランチの作成・テストケースの編集・バッチ実行の開始をしてはいけない。
+- **調べるのと提案するのは自由に行ってよい。書き込みは、ユーザーが修正案を見て了承してから。** 了承は修正ごとに取る。了承の前に、ブランチの作成・テストケースの編集・一括実行の開始をしてはいけない。
 - **修正はMagicPodのブランチ上で行い、デフォルトブランチ(main)は直接変えない。** mainへの反映(マージ)は、ユーザーがMagicPodの画面で行う。
 - MagicPod MCPの次のツールを使う。読み取りは `start_session` 不要。
   - 読み取り: `list_batch_runs`、`list_batch_run_test_runs`、`list_test_runs`、`get_test_run`、`get_test_case_detail`、`list_test_settings`
@@ -25,7 +25,7 @@ MagicPodの実行履歴から不安定なテストを見つけ、原因と直し
 
 調査は、修正案の根拠になる分だけにとどめる。読むものが増えるほど時間がかかり、報告も長くなる。
 
-- **ユーザーがテストケースを指定したら、そのテストケースの `list_test_runs` から始める。** プロジェクト全体のバッチ実行を集めるのは、テストケースの指定が無いときだけ。
+- **ユーザーがテストケースを指定したら、そのテストケースの `list_test_runs` から始める。** プロジェクト全体の一括実行を集めるのは、テストケースの指定が無いときだけ。
 - **履歴は期間に見合う件数だけ取る。** `list_test_runs` や `list_batch_runs` の `count` は、目安の期間に足りる数(例: 30)にする。
 - **`get_test_run` の `result` を取るのは、原因ごとに1回だけ。** `result` には失敗時のスクリーンショットと画面のUI要素一覧が付いてきて大きい。この1回で画面の様子をつかんだら、ほかは次のログ検索で足りる。
 - **ログは全文を読まず、`log_search` で必要な行だけを取る。**
@@ -43,10 +43,10 @@ MagicPodの実行履歴から不安定なテストを見つけ、原因と直し
 
 ### 1. 履歴を集める
 
-ユーザーがテストケースを指定していれば、`list_test_runs` でそのテストケースの実行履歴を取り、テスト設定ごとに分ける。指定が無ければ、対象のプロジェクト(URLから組織名・プロジェクト名を読む)で `list_batch_runs` を使い、直近のバッチ実行を集める。期間の指定が無ければ、直近1〜2週間、または直近30回程度を目安にする。
+ユーザーがテストケースを指定していれば、`list_test_runs` でそのテストケースの実行履歴を取り、テスト設定ごとに分ける。指定が無ければ、対象のプロジェクト(URLから組織名・プロジェクト名を読む)で `list_batch_runs` を使い、直近の一括実行を集める。期間の指定が無ければ、直近1〜2週間、または直近30回程度を目安にする。
 
 - テスト設定(PC・モバイルなど)ごとに分けて扱う。設定が違えば、同じテストケースでも別物として数える。
-- 失敗したバッチ実行は `list_batch_run_test_runs` で中身を見て、どのテストケースが失敗したかを控える。成功したバッチ実行は全件成功なので、中身を見なくてよい。
+- 失敗した一括実行は `list_batch_run_test_runs` で中身を見て、どのテストケースが失敗したかを控える。成功した一括実行は全件成功なので、中身を見なくてよい。
 - 手動で一時的にアプリを変えていた時間帯など、ユーザーから「この期間は除いて」と言われたら除く。
 
 集めた結果を、テストケース×テスト設定ごとに「実行回数・失敗回数・失敗した実行の日時(曜日も)」の表にまとめる。
