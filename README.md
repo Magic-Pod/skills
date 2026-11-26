@@ -15,6 +15,10 @@ Use them with the [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/a
 |---|---|
 | `magicpod-smoke` | Designs smoke tests for the core features of your app through a short conversation, creates them as test cases in MagicPod, and checks that they run |
 | `magicpod-test-review` | Reviews your test cases against 10 criteria (purpose, stability, readability, and maintainability) and writes a report. If you want, it fixes the findings in a new branch |
+| `magicpod-failure-investigation` | Finds out why tests failed in a batch run and sorts each failure into app bug, spec change, Flaky, or environment, with evidence. It does not change your tests |
+| `magicpod-flaky-test-fix` | Finds tests that sometimes pass and sometimes fail in your run history, finds the cause, and suggests fixes. If you agree, it fixes them in a branch and checks they are stable |
+| `magicpod-health-score` | Checks your project's health score and suggests what to do, in order of priority, to reach green or stay green. For new projects, it also plans the first 3 months |
+| `magicpod-test-organization` | Organizes your test cases: shared steps, naming, folders, labels, and descriptions. It changes things only after you approve, and writes the rules to MAGICPOD_CONVENTIONS.md |
 
 ### Requirements
 
@@ -111,6 +115,10 @@ MagicPod 公式の [Agent Skills](https://agentskills.io/) です。
 |---|---|
 | `magicpod-smoke` | アプリの核心機能を確かめるスモークテストを対話的に設計し、MagicPod にテストケースとして作成して動作確認します |
 | `magicpod-test-review` | テストケースを10の観点（目的・安定性・可読性・メンテナンス性）でレビューし、レポートにまとめます。希望すれば、指摘の修正を新しいブランチ上で行います |
+| `magicpod-failure-investigation` | 一括実行で失敗したテストの原因を調べ、アプリの不具合・仕様変更・Flaky・環境などに根拠つきで分類します。テストケースは変更しません |
+| `magicpod-flaky-test-fix` | 実行履歴から、成功したり失敗したりする不安定なテストを見つけ、原因と直し方を示します。了承すればブランチ上で直し、安定したかを確かめます |
+| `magicpod-health-score` | プロジェクトのヘルススコアを確認し、グリーンに上げる・保つための改善策を優先順位つきで提案します。導入したばかりなら、最初の3か月の進め方も設計します |
+| `magicpod-test-organization` | 共有ステップ・命名・フォルダ・ラベル・説明欄を整え、テストケースを管理しやすくします。変更は承認後に行い、決めたルールは MAGICPOD_CONVENTIONS.md に書き出します |
 
 ### 前提
 
