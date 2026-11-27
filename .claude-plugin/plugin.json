@@ -3,7 +3,7 @@
   "name": "magicpod-skills",
   "displayName": "MagicPod Skills",
   "description": "MagicPod 公式 Agent Skills。テストの作成から見直し、日々の運用まで、MagicPod でのテスト自動化の進め方を AI エージェントに伝えるスキル集です。MagicPod MCP Server（コネクタ）と組み合わせて使います。",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": {
     "name": "MagicPod",
     "url": "https://magicpod.com"

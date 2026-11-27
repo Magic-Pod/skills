@@ -24,6 +24,7 @@ Do not change the plugin name (`name` in `.claude-plugin/plugin.json`) or the ma
 ## Language
 
 - Write `description` in SKILL.md in both English and Japanese: English first, then ` / `, then Japanese. The description decides when the skill is used, so include example requests in both languages.
+- Keep `description` on one line and within 1,024 characters (the Agent Skills limit). Do not use ` #` (a space before `#`) or `: ` (a colon and a space) in it. In YAML, ` #` starts a comment, so everything after it is dropped, and `: ` breaks the file.
 - Write the body of SKILL.md in Japanese.
 - Write README in both English and Japanese, and CONTRIBUTING in English.
 
@@ -50,7 +51,7 @@ These checks run when a pull request is opened and when `main` is updated:
 2. Claude Code plugin definitions (`.claude-plugin/plugin.json` / `marketplace.json`)
 3. Discoverability (skills can still be found and installed after folders are moved)
 4. Naming rules (`scripts/check-naming.sh`; see "Naming rules" above)
-5. README and description (`scripts/check-docs.py`; every skill is in both README tables, and each description is written as "English / Japanese")
+5. README and description (`scripts/check-docs.py`; every skill is in both README tables, and each description is written as "English / Japanese", within 1,024 characters, without ` #` or `: `)
 6. Version (`scripts/check-version.sh`; if `skills/` or `.claude-plugin/` changed, `version` in plugin.json must be higher than on `main`. Without this, users who already installed the plugin do not get the update)
 7. Internal information (`scripts/check-internal-info.sh`; also checks the pull request title and description)
 
