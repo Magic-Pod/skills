@@ -4,6 +4,7 @@
 
   - README の English と日本語の両方の表に、すべてのスキルが載っているか
   - SKILL.md の description が「英語 / 日本語」の形になっているか
+  - SKILL.md の description が 1,024 文字以内で、YAML として途中で切れない書き方になっているか
 
   python3 scripts/check-docs.py
 """
@@ -14,6 +15,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 JA_CHARS = re.compile(r"[぀-ヿ㐀-鿿＀-￯]")
 LATIN = re.compile(r"[A-Za-z]")
+# Agent Skills の description の上限
+MAX_DESCRIPTION = 1024
+# 引用符なしの YAML の値の先頭に置けない文字
+YAML_INDICATORS = tuple("-?:,[]{}#&*!|>'\"%@`")
 
 errors = []
 
@@ -26,7 +31,7 @@ def read_description(skill_md: Path):
         if line.strip() == "---":
             break
         if line.startswith("description:"):
-            return line[len("description:"):].strip().strip("'\"")
+            return line[len("description:"):].strip()
     return None
 
 
@@ -51,10 +56,22 @@ else:
 # description
 for skill in skills:
     path = ROOT / "skills" / skill / "SKILL.md"
-    desc = read_description(path)
-    if desc is None:
+    raw = read_description(path)
+    if raw is None:
         errors.append(f"{path.relative_to(ROOT)}: 1行の description が見つかりません。")
         continue
+    quoted = len(raw) >= 2 and raw[0] == raw[-1] and raw[0] in "'\""
+    desc = raw[1:-1] if quoted else raw
+    if not quoted:
+        # 引用符なしだと「 #」以降はコメント扱いで消え、「: 」は YAML の書き方の誤りになる
+        if " #" in desc:
+            errors.append(f"{path.relative_to(ROOT)}: description に「 #」（空白のあとの #）があると、そこから後ろが YAML のコメントとして消えます。# の前の空白をなくすか、別の書き方にしてください。")
+        if ": " in desc:
+            errors.append(f"{path.relative_to(ROOT)}: description に「: 」（コロンと空白）があると、YAML として読めません。別の書き方にしてください。")
+        if desc.startswith(YAML_INDICATORS):
+            errors.append(f"{path.relative_to(ROOT)}: description を記号（{desc[0]}）で始めると、YAML として正しく読めないことがあります。文字で始めてください。")
+    if len(desc) > MAX_DESCRIPTION:
+        errors.append(f"{path.relative_to(ROOT)}: description が {len(desc):,} 文字あります。{MAX_DESCRIPTION:,} 文字以内にしてください。")
     if " / " not in desc:
         errors.append(f"{path.relative_to(ROOT)}: description は「英語 / 日本語」の形にしてください（「 / 」で区切る）。")
         continue
