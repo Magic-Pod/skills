@@ -1,0 +1,42 @@
+{
+  "organization": "acme",
+  "project": "web_regression",
+  "batch_run_number": 128,
+  "batch_run_url": "https://app.magicpod.com/acme/web_regression/batch-run/128/",
+  "test_setting_name": "夜間回帰",
+  "condition_labels": ["Chrome 157", "Cloud"],
+  "branch": "main",
+  "started_at": "2026-11-05T02:00:03+09:00",
+  "ended_at": "2026-11-05T02:41:10+09:00",
+  "summary": {"total": 42, "succeeded": 40, "failed": 2},
+  "failures": [
+    {
+      "test_case_number": 17,
+      "test_case_name": "ログイン後にマイページが表示される",
+      "test_run_number": 311,
+      "status": "failed",
+      "pattern": "日本語Chrome | Browser: Chrome 157 | Environment: Cloud",
+      "pattern_name": "日本語Chrome",
+      "started_at": "2026-11-05T02:13:44+09:00",
+      "failed_step": "ステップ 7: Assert マイページ見出し(css=h1.mypage-title) is displayed（ログ: assertElementPresent([マイページ見出し], {})）",
+      "error_message": "UI element \"マイページ見出し\" is not found (css=h1.mypage-title)",
+      "test_case_url": "https://app.magicpod.com/acme/web_regression/17/",
+      "test_run_url": "https://app.magicpod.com/acme/web_regression/17/test-run/311/"
+    },
+    {
+      "test_case_number": 23,
+      "test_case_name": "キーワードで商品を検索できる",
+      "test_run_number": 98,
+      "status": "failed",
+      "pattern": "日本語Chrome | Browser: Chrome 157 | Environment: Cloud",
+      "pattern_name": "日本語Chrome",
+      "data_pattern_number": 2,
+      "data_pattern_values": {"keyword": "限定セール", "expected_count": "3"},
+      "started_at": "2026-11-05T02:20:11+09:00",
+      "failed_step": "ステップ 4: Assert 検索結果件数(css=.result-count) text equals ${expected_count}（ログ: assertText([検索結果件数], ${expected_count}, {})）",
+      "error_message": "Expected text is \"3\" but actual text is \"0\"",
+      "test_case_url": "https://app.magicpod.com/acme/web_regression/23/",
+      "test_run_url": "https://app.magicpod.com/acme/web_regression/23/test-run/98/"
+    }
+  ]
+}

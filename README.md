@@ -20,6 +20,7 @@ Use them with the [MagicPod MCP Server](https://support.magic-pod.com/hc/en-us/a
 | `magicpod-failure-investigation` | Finds out why tests failed in a batch run and sorts each failure into app bug, spec change, Flaky, or environment, with evidence. |
 | `magicpod-flaky-test-fix` | Finds tests that sometimes pass and sometimes fail in your run history, finds the cause, and suggests fixes. If you agree, it fixes them in a branch and checks they are stable |
 | `magicpod-health-score` | Checks your project's health score and suggests what to do, in order of priority, to reach green or stay green. For new projects, it also plans the first 3 months |
+| `magicpod-to-redmine` | Files the failed tests in a batch run as Redmine issues. If an open issue for the same test already exists, it adds a note instead of creating a new one. For Redmine setup and settings, see [docs/magicpod-to-redmine.md](docs/magicpod-to-redmine.md) (Japanese) |
 
 ### Requirements
 
@@ -121,6 +122,7 @@ MagicPod 公式の [Agent Skills](https://agentskills.io/) です。
 | `magicpod-failure-investigation` | 一括実行で失敗したテストの原因を調べ、アプリの不具合・仕様変更・Flaky・環境などに根拠つきで分類します |
 | `magicpod-flaky-test-fix` | 実行履歴から、成功したり失敗したりする不安定なテストを見つけ、原因と直し方を示します。了承すればブランチ上で直し、安定したかを確かめます |
 | `magicpod-health-score` | プロジェクトのヘルススコアを確認し、グリーンに上げる・保つための改善策を優先順位つきで提案します。導入したばかりなら、最初の3か月の進め方も設計します |
+| `magicpod-to-redmine` | 一括実行で失敗したテストを Redmine のチケットとして起票します。同じテストの未完了チケットがあれば、新しく作らずに注記として追記します。Redmine 側の準備や設定は [docs/magicpod-to-redmine.md](docs/magicpod-to-redmine.md) を参照してください |
 
 ### 前提
 
