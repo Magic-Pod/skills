@@ -1,0 +1,33 @@
+一括実行 {{batch_run_link}} で失敗しました。
+
+* テスト実行: {{test_run_link}}
+{{#pattern}}
+* 実行パターン: {{pattern}}
+{{/pattern}}
+{{#data_pattern_number}}
+* データパターン: {{data_pattern_number}}
+{{/data_pattern_number}}
+{{#started_at}}
+* 実行日時: {{started_at}}
+{{/started_at}}
+{{#data_pattern_values}}
+
+h3. データパターンの値
+<pre>
+{{data_pattern_values}}
+</pre>
+{{/data_pattern_values}}
+{{#failed_step}}
+
+h3. 失敗ステップ
+<pre>
+{{failed_step}}
+</pre>
+{{/failed_step}}
+{{#error_message}}
+
+h3. エラーメッセージ
+<pre>
+{{error_message}}
+</pre>
+{{/error_message}}

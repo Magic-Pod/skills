@@ -1,2 +1,10 @@
 .DS_Store
 node_modules/
+# magicpod-to-redmine: personal settings and working files (may contain API keys)
+.claude/settings.local.json
+.env
+.magicpod-redmine/
+failures*.json
+!dev/redmine-docker/sample-failures.json
+__pycache__/
+*.pyc

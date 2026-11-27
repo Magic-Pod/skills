@@ -29,7 +29,7 @@ for pattern in "${PATTERNS[@]}"; do
   # shellcheck disable=SC2086
   hits=$(printf '%s\n' $FILES | xargs grep -nIiE -- "$pattern" 2>/dev/null)
   if [ -n "$hits" ]; then
-    echo "社内情報の可能性があるもの（パターン: $pattern）:" >&2
+    echo "社内情報の可能性があるもの（パターン: ${pattern}）:" >&2
     echo "$hits" >&2
     echo >&2
     FOUND=1

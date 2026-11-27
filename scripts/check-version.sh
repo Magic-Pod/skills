@@ -15,7 +15,7 @@ BASE_REF="${BASE_REF:-origin/main}"
 PLUGIN_JSON=".claude-plugin/plugin.json"
 
 if ! git rev-parse --verify --quiet "$BASE_REF" >/dev/null; then
-  echo "比べる相手（$BASE_REF）が手元にないため、確認を飛ばします。"
+  echo "比べる相手（${BASE_REF}）が手元にないため、確認を飛ばします。"
   exit 0
 fi
 
@@ -45,11 +45,11 @@ def parse(v):
 sys.exit(0 if parse(sys.argv[1]) > parse(sys.argv[2]) else 1)
 EOF
 then
-  echo "version が上がっています（$base_version → $head_version）。"
+  echo "version が上がっています（$base_version → ${head_version}）。"
   exit 0
 fi
 
-echo "スキルまたはプラグイン定義が変わっていますが、$PLUGIN_JSON の version が上がっていません（$BASE_REF: $base_version、この変更: $head_version）。" >&2
+echo "スキルまたはプラグイン定義が変わっていますが、$PLUGIN_JSON の version が上がっていません（$BASE_REF: ${base_version}、この変更: ${head_version}）。" >&2
 echo "変わったファイル:" >&2
 echo "$changed" | sed 's/^/  /' >&2
 exit 1

@@ -41,7 +41,7 @@ for dir in skills/*/; do
   # frontmatter の name を取り出す
   name="$(awk 'NR==1 && $0!="---"{exit} NR>1 && $0=="---"{exit} NR>1 && /^name:/{sub(/^name:[[:space:]]*/,""); gsub(/["'\'']/,""); print; exit}' "$dir/SKILL.md")"
   if [ "$name" != "$folder" ]; then
-    fail "SKILL.md の name（${name:-なし}）をフォルダ名（$folder）と同じにしてください: $dir/SKILL.md"
+    fail "SKILL.md の name（${name:-なし}）をフォルダ名（${folder}）と同じにしてください: $dir/SKILL.md"
   fi
 done
 
