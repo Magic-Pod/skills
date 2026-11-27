@@ -212,7 +212,7 @@ https://support.magic-pod.com/hc/articles/62605396709273
 ## さらに活用するには（任意）
 
 - 細かい修正は、テストケース編集画面の MagicPod Autopilot に自然言語で頼めます。
-  https://support.magic-pod.com/hc/articles/63169770556057
+  https://support.magic-pod.com/hc/articles/47997641657369
 - CI に組み込む場合は、MagicPod Web API やコマンドライン一括実行をご利用ください。
 ```
 
@@ -233,7 +233,7 @@ MagicPod の画面で設定します。
 実行対象の絞り方：
 https://support.magic-pod.com/hc/articles/6760000467481
 通知の設定：
-https://support.magic-pod.com/hc/articles/7573429938073
+https://support.magic-pod.com/hc/articles/6259603606553
 ```
 
 **ローカル PC（MagicPod Desktop）の場合**
