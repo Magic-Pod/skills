@@ -79,7 +79,7 @@ To get updates automatically, turn on auto-update for the `magicpod` marketplace
 
 #### Claude Desktop / Web (Chat, Cowork)
 
-In **Customize > Plugins**, open the "…" menu of the "MagicPod Skills" plugin and choose **Check for updates**.
+In **Customize > Plugins**, open the "…" menu of the "MagicPod Skills" plugin and choose **Check for updates**. If an update is available, click **Update**.
 
 #### Other agents (Cursor, Codex, etc.)
 
@@ -180,7 +180,7 @@ claude plugin update magicpod-skills@magicpod
 
 #### Claude Desktop / Web（チャット・Cowork）
 
-**カスタマイズ > プラグイン** で「MagicPod Skills」プラグインの「…」メニューを開き、**アップデートを確認** を選びます。
+**カスタマイズ > プラグイン** で「MagicPod Skills」プラグインの「…」メニューを開き、**アップデートを確認** を選びます。アップデートがあれば **更新** を押します。
 
 #### その他のエージェント（Cursor、Codex など）
 
